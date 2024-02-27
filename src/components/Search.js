@@ -1,40 +1,33 @@
 import React , { useState , useRef } from 'react';
 import searchImg from '../images/search.svg';
 import close from '../images/close.svg';
+import PropTypes from 'prop-types';
 
-function Search () {
-    const [ isType , setIsType ] = useState(false);
+function Search ( { onSearchChange } ) {
+    const [ isType , setIsType ] = useState(false);         //  input 裡是否有文字
     const searchInputRef = useRef(null);
-    const urlName = 'https://restcountries.com/v3.1/name/';
 
     // 清除input內容，使用於叉叉圖片點選
     const clearInput = () => {
         if (searchInputRef.current) {
             searchInputRef.current.value = "";
             setIsType(false);
+            onSearchChange("");      // 要將 onSearchChange 改回空值，這樣打完叉叉，才會顯示回全部國家的畫面
         }
     }
 
-    useState( () => {
-        const fetchName = async (name) => {
-            try{
-                const response = await fetch( urlName + name );
-                const data = await response.json();
-
-                console.log(data);
-            }
-            catch (error) { console.log( error ) }
-        }
-        fetchName("china");
-    })
+    const handleInputChange = (e) => {
+        const value = e.target.value;
+        setIsType(!!value);
+        onSearchChange(value);
+    };
 
     return (
     <>
         <div className='max-w-120 md:w-120 shrink-0'>
             <input
                 ref={searchInputRef}
-                onInput={ () => {} }
-                onChange={ (e) => { !e.target.value ? setIsType(false) : setIsType(true) } }    // 根據input是否有內容，來調整叉叉圖片的出現與否
+                onChange={handleInputChange}
                 type="text"
                 placeholder='Search for a country...'
                 className='w-full max-w-120 mt-6 mb-10 h-12 lightMode__shadow rounded-md pl-18.5 py-3.5
@@ -50,6 +43,10 @@ function Search () {
         </div>
     </>
     )
+}
+
+Search.propTypes = {
+    onSearchChange: PropTypes.string
 }
 
 export default Search;
