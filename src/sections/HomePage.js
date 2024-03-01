@@ -3,7 +3,7 @@ import Category from '../components/Category';
 import AllCountry from '../components/AllCountry';
 import Search from '../components/Search';
 
-function Main () {
+function HomePage () {
     const [ selectedRegion, setSelectedRegion ] = useState('All Countries');
     const [ searchInput, setSearchInput ] = useState('');
     
@@ -26,4 +26,4 @@ function Main () {
     )
 }
 
-export default Main;
+export default HomePage;

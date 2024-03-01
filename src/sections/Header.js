@@ -9,7 +9,10 @@ function Header () {
     <>
     <div className='shadow'>
         <header className='max-w-7xl mx-auto py-7.5 px-4 font-extrabold flex justify-between items-center md:px-10 2xl:px-0'>
-            <p className='md:text-2xl'>Where in the world?</p>
+            {/* logo zone */}
+            <a href="/">
+                <p className='md:text-2xl'>Where in the world?</p>
+            </a>
             
             {/* dark-light mode switch button */}
             <input type='checkbox' id='modeSwitch' className='h-0 w-0 invisible'/>

@@ -1,12 +1,20 @@
 import React from 'react';
 import Header from './sections/Header';
-import Main from './sections/Main';
+// import HomePage from './sections/HomePage';
+import Country from './sections/Country';
+import { BrowserRouter , Routes , Route } from 'react-router-dom';
 
 function App() {
   return (
   <>
-    <Header />
-    <Main />
+    <BrowserRouter>
+      <Header />
+
+      <Routes>
+        {/* <Route index element={<HomePage />} /> */}
+        <Route index element={<Country/>} />
+      </Routes>
+    </BrowserRouter>
   </>
   );
 }

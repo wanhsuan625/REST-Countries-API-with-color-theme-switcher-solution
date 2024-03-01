@@ -1,5 +1,5 @@
 import React , { useState , useEffect } from 'react';
-import CountryBrief from './CountryBrief';
+import CountryBrief from './CountryInfo/CountryBrief';
 import PropTypes from 'prop-types';
 import Error from './Error';
 
@@ -16,7 +16,7 @@ function AllCountry ( { selectedRegion , searchInput } ) {
         return String(num).replace( comma , ',' );
     }
 
-    const fetchCountryData = async (url) => {
+    const fetchCountryBriefData = async (url) => {
         try{
             const response = await fetch(url);
             const data = await response.json();
@@ -46,12 +46,18 @@ function AllCountry ( { selectedRegion , searchInput } ) {
 
     // 根據 region 傳回來的資料去取得國家
     useEffect( () => {
-        fetchCountryData( selectedRegion === 'All Countries' ? urlAll : `${urlRegion}${selectedRegion}` );
+        fetchCountryBriefData( selectedRegion === 'All Countries' ? urlAll : `${urlRegion}${selectedRegion}` );
     }, [selectedRegion]);
 
     // 根據 search 所輸入的值去取得國家的資料
     useEffect(() => {
-        fetchCountryData( searchInput !== "" ? urlSearch + searchInput : urlAll );
+        if( searchInput !=="" ) {
+            fetchCountryBriefData( urlSearch + searchInput );
+        } 
+        else {
+            fetchCountryBriefData(urlAll);
+            setError(false);
+        }
     }, [searchInput]);
 
     return (

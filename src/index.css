@@ -74,3 +74,21 @@ input:checked + .toggle::after{
 .select{
     appearance: none;
 }
+
+/* --- 資料顯示設定 --- */
+.country__detailInfo p{
+    font-weight: 600;
+}
+
+.country__detailInfo span{
+    font-weight: 300;
+}
+
+.country__detailInfo-button{
+    width: 96px;
+    height: 28px;
+    border-radius: 2px;
+    font-size: 14px;
+    line-height: 28px;
+    box-shadow: #c9c9c9 0 0 3px 1px;
+}
