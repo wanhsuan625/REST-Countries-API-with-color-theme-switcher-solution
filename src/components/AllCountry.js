@@ -1,6 +1,5 @@
 import React , { useState , useEffect } from 'react';
 import CountryBrief from './CountryInfo/CountryBrief';
-import PropTypes from 'prop-types';
 import Error from './Error';
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
@@ -97,12 +96,6 @@ function AllCountry ( { selectedRegion , searchInput } ) {
         }
     </>
     )
-}
-
-//  設定 selectedRegion 變數的型別
-AllCountry.propTypes = {
-    selectedRegion: PropTypes.string,
-    searchInput: PropTypes.string
 }
 
 export default AllCountry;
