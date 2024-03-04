@@ -2,6 +2,7 @@ import React , { useState , useEffect } from 'react';
 import CountryBrief from './CountryInfo/CountryBrief';
 import PropTypes from 'prop-types';
 import Error from './Error';
+import { Link } from 'react-router-dom';
 
 function AllCountry ( { selectedRegion , searchInput } ) {
     const urlAll = 'https://restcountries.com/v3.1/all';
@@ -19,12 +20,13 @@ function AllCountry ( { selectedRegion , searchInput } ) {
     const fetchCountryBriefData = async (url) => {
         try{
             const response = await fetch(url);
-            const data = await response.json();
-            
-            if ( data.status === 404 ){
+
+            if ( !response.ok ){
                 setError(true);
-                return;
+                throw new Error('Not found any country.');
             }
+
+            const data = await response.json();
 
             // 載入首頁要的國家資料
             const allCountrySet = data.map( (dt , index) => ({
@@ -39,7 +41,6 @@ function AllCountry ( { selectedRegion , searchInput } ) {
             setError(false);
         }
         catch( error ) { 
-            console.log( error );
             setError(true);
         }
     }
@@ -67,14 +68,15 @@ function AllCountry ( { selectedRegion , searchInput } ) {
             <Error/> :
             <section className='grid px-10 pb-20 gap-y-10 xs:grid-cols-2 xs:px-0 xs:gap-x-7 md:grid-cols-3 lg:gap-x-15 xl:grid-cols-4 lg:gap-y-19 2xl:gap-x-19'>
                 { countryData.map( ( country ) => (
-                    <CountryBrief 
-                        key={country.id}
-                        flag={country.flag}
-                        nationName={country.nationName}
-                        population={country.population}
-                        region={country.region}
-                        capital={country.capital}    
-                    />
+                    <Link key={country.id} to={`/country/${country.nationName}`}>
+                        <CountryBrief 
+                            flag={country.flag}
+                            nationName={country.nationName}
+                            population={country.population}
+                            region={country.region}
+                            capital={country.capital}    
+                        />
+                    </Link>
                 ))}
             </section>
         }

@@ -1,9 +1,9 @@
 import React , { useState , useEffect } from 'react';
 import { ReactComponent as LeftArrow } from '../images/call-made.svg';
 import CountryDetail from '../components/CountryInfo/CountryDetail';
+import { Link } from 'react-router-dom';
 
 function Country(){
-    // const urlCountry = 'https://restcountries.com/v3.1/name/taiwan';
     const [ detailData , setDetailData ] = useState([]);
 
     // 將數字千分位區分
@@ -12,14 +12,14 @@ function Country(){
         return String(num).replace( comma , ',' );
     }
 
-    const fetchCountryDetailData = async () => {
+    const fetchCountryDetailData = async (countryName) => {
         try{
-            const response = await fetch('https://restcountries.com/v3.1/name/belgium?fullText=true');
+            const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`);
+            if(!response.ok) throw new Error("Not found any country.");
+
             let data = await response.json();
             data = data[0];
             
-            console.log( Object.values(data.borders).map((border) => border) );
-
             const countryDetailData = {
                 "flag": data.flags.svg,
                 "nationName": data.name.common,
@@ -31,10 +31,8 @@ function Country(){
                 "toLevelDomain": data.tld[0],
                 "currencies": Object.values(data.currencies).map((currency) => currency.name).join(", "),
                 "languages": Object.values(data.languages).map((language) => language).join(", "),
-                // "borders": Object.values(data.border).map()
+                "borders": data.borders ? Object.values(data.borders) : "No border country",
             }
-            
-            //         "borders" : data.borders ? data.borders : "No border country",                                // 周圍國家
             setDetailData(countryDetailData);
         }
         catch( error ) { 
@@ -43,19 +41,25 @@ function Country(){
     }
 
     useEffect( () => { 
-        fetchCountryDetailData()
+        // 取得國家名稱
+        const urlParts = window.location.href.split('/');
+        const countryName = urlParts[urlParts.length - 1].toLowerCase();
+
+        fetchCountryDetailData(countryName);
     },[]);
 
     return(
     <>
-        <section className='max-w-7xl mx-auto mt-20 px-7 md:px-8 2xl:px-0'>
-            <button className='flex gap-2.5 content-center justify-center rounded-sm py-1 px-6 shadow-button md:shadow-none md:hover:shadow-button md:border-0'>
-                <LeftArrow /> 
-                <p className='text-base leading-5'>Back</p>
+        <section className='max-w-7xl mx-auto mt-20 px-7 md:px-8y 2xl:px-0'>
+            <button>
+                <Link to={'/'} className='flex gap-2.5 content-center justify-center rounded-sm py-1 px-6 shadow-button md:shadow-none md:hover:shadow-button md:border-0'>
+                    <LeftArrow /> 
+                    <p className='text-base leading-5'>Back</p>
+                </Link>
             </button>
 
             <div className='mt-16 lg:flex lg:justify-between lg:gap-12 lg:items-center'>
-                <img src={detailData.flag} alt="" className='block aspect-4/3 rounded-md max-h-80 lg:min-w-100 lg:max-h-100 '/>
+                <img src={detailData.flag} alt="" className='block aspect-4/3 rounded-md max-h-80 shadow-md lg:min-w-100 lg:max-h-100'/>
                 {/* 國家詳細的資料 */}
                 <CountryDetail 
                     nationName={detailData.nationName}
