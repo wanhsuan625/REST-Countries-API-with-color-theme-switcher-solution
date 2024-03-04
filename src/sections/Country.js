@@ -2,9 +2,11 @@ import React , { useState , useEffect } from 'react';
 import { ReactComponent as LeftArrow } from '../images/call-made.svg';
 import CountryDetail from '../components/CountryInfo/CountryDetail';
 import { Link } from 'react-router-dom';
+import Loading from '../components/Loading';
 
 function Country(){
     const [ detailData , setDetailData ] = useState([]);
+    const [ isLoading , setIsLoading ] = useState(true);     // 資料是否正在載入中
 
     // 將數字千分位區分
     const numberComma = ( num ) => {
@@ -34,14 +36,15 @@ function Country(){
                 "borders": data.borders ? Object.values(data.borders) : "No border country",
             }
             setDetailData(countryDetailData);
+            setIsLoading(false);
         }
         catch( error ) { 
             console.log( error );
         }
     }
 
-    useEffect( () => { 
-        // 取得國家名稱
+    useEffect( () => {
+        // 透過國家名稱來進行網頁的連結
         const urlParts = window.location.href.split('/');
         const countryName = urlParts[urlParts.length - 1].toLowerCase();
 
@@ -57,23 +60,24 @@ function Country(){
                     <p className='text-base leading-5'>Back</p>
                 </Link>
             </button>
-
-            <div className='mt-16 lg:flex lg:justify-between lg:gap-12 lg:items-center'>
-                <img src={detailData.flag} alt="" className='block aspect-4/3 rounded-md max-h-80 shadow-md lg:min-w-100 lg:max-h-100'/>
-                {/* 國家詳細的資料 */}
-                <CountryDetail 
-                    nationName={detailData.nationName}
-                    nativeName={detailData.nativeName}
-                    population={detailData.population}
-                    region={detailData.region}
-                    subRegion={detailData.subregion}
-                    capital={detailData.capital}
-                    topLevelDomain={detailData.toLevelDomain}
-                    currencies={detailData.currencies} 
-                    languages={detailData.languages}
-                />
-            </div>
-
+            
+            { isLoading ? <Loading /> :
+                <div className='mt-16 lg:flex lg:justify-between lg:gap-12 lg:items-center'>
+                    <img src={detailData.flag} alt="" className='block aspect-4/3 rounded-md max-h-80 border-2 lg:min-w-100 lg:max-h-100'/>
+                    {/* 國家詳細的資料 */}
+                    <CountryDetail 
+                        nationName={detailData.nationName}
+                        nativeName={detailData.nativeName}
+                        population={detailData.population}
+                        region={detailData.region}
+                        subRegion={detailData.subregion}
+                        capital={detailData.capital}
+                        topLevelDomain={detailData.toLevelDomain}
+                        currencies={detailData.currencies} 
+                        languages={detailData.languages}
+                    />
+                </div>
+            }
         </section>
     </>
     )

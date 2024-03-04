@@ -103,7 +103,7 @@ input:checked + .toggle::after{
 }
 .loader:before{
     content: '';
-    animation: 5s print linear forwards infinite;
+    animation: 3s print linear forwards infinite;
 }
 
 @keyframes print {
