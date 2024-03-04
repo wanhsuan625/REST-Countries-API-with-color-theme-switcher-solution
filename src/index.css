@@ -92,3 +92,29 @@ input:checked + .toggle::after{
     line-height: 28px;
     box-shadow: #c9c9c9 0 0 3px 1px;
 }
+
+/* --- 載入圖案顯示 --- */
+.loader{
+    font-size: 36px;
+    color: var(--text);
+    display: inline-block;
+    font-weight: 600;
+    position: relative;
+}
+.loader:before{
+    content: '';
+    animation: 5s print linear forwards infinite;
+}
+
+@keyframes print {
+    0% { content: 'L'}
+    10% { content: 'Lo'}
+    20% { content: 'Loa'}
+    30% { content: 'Load'}
+    40% { content: 'Loadi'}
+    50% { content: 'Loadin'}
+    60% { content: 'Loading'}
+    70% { content: 'Loading.'}
+    80% { content: 'Loading..'}
+    90% , 100% { content: 'Loading...'}
+}
