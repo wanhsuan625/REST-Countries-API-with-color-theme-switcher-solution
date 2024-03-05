@@ -12,7 +12,7 @@ function App() {
 
       <Routes>
         <Route index element={<HomePage />} />
-        <Route path='/country/:countryName' element={<Country/>} />
+        <Route path='/country/:countryName' element={<Country/>} />        {/* :country 動態路徑 */}
       </Routes>
     </BrowserRouter>
   </>
