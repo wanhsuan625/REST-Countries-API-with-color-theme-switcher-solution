@@ -57,10 +57,11 @@ function Country(){
                 "region": data.region,
                 "subregion": data.subregion ? data.subregion : 'No subregion',
                 "capital": data.capital ? data.capital : "No capital",
-                "toLevelDomain": data.tld[0],
+                "topLevelDomain": data.tld ? data.tld[0] : 'No top level domain',
                 "currencies": data.currencies ? Object.values(data.currencies).map((currency) => currency.name).join(", ") : "No currency",
                 "languages": data.language ? Object.values(data.languages).map((language) => language).join(", ") : 'No language',
                 "borders": borderCountries,
+                "mapSite": data.maps.googleMaps,
             }
             setDetailData(countryDetailData);
             setIsLoading(false);
@@ -90,21 +91,25 @@ function Country(){
             
             { isLoading ? <Loading /> :
                 <div className='mt-16 lg:flex lg:justify-evenly lg:gap-24 lg:items-center xl:gap-40'>
-                    <img src={detailData.flag} alt="" className='block aspect-4/3 rounded-md max-h-80 border-2 lg:w-110 lg:max-h-96'/>
+                    <div className='relative aspect-4/3 cursor-pointer max-w-110 lg:max-w-120'>
+                        <a href={detailData.mapSite} target="_blank" rel="noopener noreferrer" className='size-full'>
+                            <img src={detailData.flag} alt="" className='size-full border-2 rounded-md object-fill'/>
+                        </a>
+                    </div>
                     {/* 國家詳細的資料 */}
-                    <CountryDetail 
+                    <CountryDetail
                         nationName={detailData.nationName}
                         nativeName={detailData.nativeName}
                         population={detailData.population}
                         region={detailData.region}
                         subRegion={detailData.subregion}
                         capital={detailData.capital}
-                        topLevelDomain={detailData.toLevelDomain}
+                        topLevelDomain={detailData.topLevelDomain}
                         currencies={detailData.currencies} 
                         languages={detailData.languages}
                         borderCountries={detailData.borders}
                     />
-                </div>
+                </div>       
             }
         </section>
     </>
