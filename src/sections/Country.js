@@ -6,7 +6,6 @@ import Loading from '../components/Loading';
 
 function Country(){
     const [ detailData , setDetailData ] = useState([]);
-    // const [ border , setBorder ] = useState([]);
     const [ isLoading , setIsLoading ] = useState(true);     // 資料是否正在載入中
     const codeUrl = 'https://restcountries.com/v3.1/alpha/';
 
@@ -81,7 +80,7 @@ function Country(){
 
     return(
     <>
-        <section className='max-w-7xl mx-auto mt-20 px-7 mb-20 md:px-8y 2xl:px-0'>
+        <section className='max-w-7xl mx-auto mt-32 px-7 mb-20 md:px-8y lg:mb-52 2xl:px-0'>
             <button>
                 <Link to={'/'} className='flex gap-2.5 content-center justify-center rounded-sm py-1 px-6 shadow-button md:shadow-none md:hover:shadow-button md:border-0'>
                     <LeftArrow /> 

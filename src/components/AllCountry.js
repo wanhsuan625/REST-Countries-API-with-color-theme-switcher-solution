@@ -9,8 +9,9 @@ function AllCountry ( { selectedRegion , searchInput } ) {
     const urlRegion = 'https://restcountries.com/v3.1/region/';
     const urlSearch = 'https://restcountries.com/v3.1/name/';
     const [ countryData , setCountryData ] = useState([]);
-    const [ error , setError ] = useState(false);
+    const [ error , setError ] = useState(false);                           // 搜尋結果是否正確
     const [ isLoading , setIsLoading ] = useState(true);
+    const [ showCountryAmount , setShowCountryAmount ] = useState(12);      //  初始畫面用12個國家呈現
 
     // 將數字千分位區分
     const numberComma = ( num ) => {
@@ -52,6 +53,13 @@ function AllCountry ( { selectedRegion , searchInput } ) {
         }
     }
 
+    //  載入更多國家
+    const loadMoreCountryHandler = () => {
+        if( countryData.length <= showCountryAmount ) return;
+
+        setShowCountryAmount( (prevState) => prevState + 12 );    // 每次按load more按鈕，多呈現12個國家
+    }
+
     // 根據 region 傳回來的資料去取得國家
     useEffect( () => {
         setIsLoading(true);
@@ -80,19 +88,28 @@ function AllCountry ( { selectedRegion , searchInput } ) {
             // 若error為true，出現Error畫面；反之則出現搜尋所得資料
             error ?          
                 <Error/> :
-                <section className='grid px-10 pb-20 gap-y-10 xs:grid-cols-2 xs:px-0 xs:gap-x-7 md:grid-cols-3 lg:gap-x-15 xl:grid-cols-4 lg:gap-y-19 2xl:gap-x-19'>
-                    { countryData.map( ( country ) => (
-                        <Link key={country.id} to={`/country/${country.nationName}`}>
-                            <CountryBrief 
-                                flag={country.flag}
-                                nationName={country.nationName}
-                                population={country.population}
-                                region={country.region}
-                                capital={country.capital}    
-                            />
-                        </Link>
-                    ))}
-                </section>
+                <div>
+                    <section className='grid px-10 pb-16 gap-y-10 xs:grid-cols-2 xs:px-0 xs:gap-x-7 md:grid-cols-3 lg:gap-x-15 xl:grid-cols-4 lg:gap-y-19 2xl:gap-x-19'>
+                        { countryData.slice( 0 , showCountryAmount ).map( ( country ) => (
+                            <Link key={country.id} to={`/country/${country.nationName}`}>
+                                <CountryBrief 
+                                    flag={country.flag}
+                                    nationName={country.nationName}
+                                    population={country.population}
+                                    region={country.region}
+                                    capital={country.capital}    
+                                />
+                            </Link>
+                        ))}
+                    </section>
+                    
+                    {/* 確認countryData的數量，在判斷是否要呈現load more按鈕 */}
+                    { countryData.length > showCountryAmount && (
+                        <button className=' block mb-10 mx-auto text-base font-semibold py-2 px-6 rounded-md border-2 hover:border-slate-400' onClick={loadMoreCountryHandler}>
+                            Load more
+                        </button>
+                    )}
+                </div>
         }
     </>
     )

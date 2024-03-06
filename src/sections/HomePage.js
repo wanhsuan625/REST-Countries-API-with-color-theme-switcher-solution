@@ -12,7 +12,7 @@ function HomePage () {
 
     return (
     <>
-        <section className='max-w-7xl mx-auto px-4 md:px-8 xl:px-10 2xl:px-0'>
+        <section className='max-w-7xl mt-24 mx-auto px-4 md:px-8 xl:px-10 2xl:px-0'>
             <div className='md:flex md:justify-between mb-8'>
                 <Search onSearchChange={handleSearchChange}/>
                 

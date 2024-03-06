@@ -7,7 +7,7 @@ function Header () {
     
     return (
     <>
-    <div className='shadow'>
+    <div className='fixed w-full shadow top-0 z-[1] bg-white'>
         <header className='max-w-7xl mx-auto py-7.5 px-4 font-extrabold flex justify-between items-center md:px-10 2xl:px-0'>
             {/* logo zone */}
             <a href="/">
