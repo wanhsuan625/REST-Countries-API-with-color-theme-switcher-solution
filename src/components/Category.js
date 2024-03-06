@@ -1,5 +1,5 @@
 import React , { useState , useEffect } from 'react';
-import arrow from '../images/arrow.png';
+import { ReactComponent as Arrow } from '../images/arrow.svg';
 import PropTypes from 'prop-types';
 
 function Category ( { onFilterChange } ) {
@@ -50,22 +50,22 @@ function Category ( { onFilterChange } ) {
 
     return (
     <>
-        <section className='w-50 md:mt-12'>
-            <div id='filterBox' onClick={ handleClick } className='py-3.5 pl-6 pr-5 flex justify-between items-center rounded-md lightMode__shadow cursor-pointer mb-1'>
+        <section className='w-50 md:mt-12 dark:text-white'>
+            <div id='filterBox' onClick={ handleClick } className='py-3.5 pl-6 pr-5 flex justify-between items-center rounded-md lightMode__shadow cursor-pointer mb-1 dark:shadow-none dark:bg-dark-gray'>
                 <span className='font-semibold' >{filterOption}</span>
-                <img src={arrow} alt="" className={`h-2.5 ${ isClick ? 'rotate-180': '' } transition-all duration-300`}/>
+                <Arrow className={`h-2.5 ${ isClick ? 'rotate-180': '' } transition-all duration-300 dark:fill-white`}/>
             </div>
 
-            <ul id='categoryBox' onClick={ handleClick } className={`${ isClick ? 'absolute' : 'hidden'} w-full bg-white lightMode__shadow rounded-md z-10`}>
+            <ul id='categoryBox' onClick={ handleClick } className={`${ isClick ? 'absolute' : 'hidden'} w-full bg-white lightMode__shadow rounded-md z-10 dark:bg-dark-gray dark:shadow-none`}>
                 { categories.map( ( category , index ) => (
                     <li key={index}
-                        className='font-semibold cursor-pointer px-6 py-1 hover:bg-light-gray first:rounded-t-md first:pt-2'
+                        className='font-semibold cursor-pointer px-6 py-1 hover:bg-light-gray first:rounded-t-md first:pt-2 dark:hover:bg-slate-500'
                         onClick={ () => { handleFilter(category) } }
                     >
                         {category}
                     </li>
                 ))}
-                <li onClick={ () => { handleFilter( 'All Countries' ) } } className='font-semibold cursor-pointer px-6 py-1 hover:bg-light-gray rounded-b-md pb-2'>All Countries</li>
+                <li onClick={ () => { handleFilter( 'All Countries' ) } } className='font-semibold cursor-pointer px-6 py-1 hover:bg-light-gray rounded-b-md pb-2 dark:hover:bg-slate-500'>All Countries</li>
             </ul>
         </section>
     </>

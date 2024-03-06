@@ -10,21 +10,10 @@
 }
 html , body{
     font-family: 'Nunito Sans',  sans-serif;
-    
 }
+
 input:focus {
     outline: none;
-}
-:root{
-    --background: #fafafa;
-    --text: #111517;               /* light text */
-    --inputContent: #858585;       /* light input text */
-    --elementColor: #ffffff;
-    
-    /* darkbackground: #202c37; */
-    /* dark text : #ffffff */
-    /* dark input text : #ffffff */
-    /* dark element: #2b3945; */
 }
 .lightMode__shadow{
     box-shadow: 0 0 6px -1px #C4C4C4;
@@ -51,7 +40,7 @@ input:focus {
 input:checked + .toggle::after{
     left: calc( 100% - 3px );
     transform: translateX(-100%);
-    background-color: #000000;
+    background-color: #2B3844;
 }
 /* === 首頁設定 === */
 /* --- 國家國旗的大小一致設定 --- */
@@ -88,7 +77,7 @@ input:checked + .toggle::after{
     min-width: 96px;
     padding: 0px 16px;
     height: 28px;
-    border-radius: 2px;
+    border-radius: 3px;
     font-size: 14px;
     line-height: 28px;
     box-shadow: #c9c9c9 0 0 3px 1px;
@@ -118,4 +107,10 @@ input:checked + .toggle::after{
     70% { content: 'Loading.'}
     80% { content: 'Loading..'}
     90% , 100% { content: 'Loading...'}
+}
+
+@media (prefers-color-scheme: dark) {
+    body{
+        background-color: #202C36;
+    }
 }

@@ -1,5 +1,5 @@
 import React , { useState , useEffect } from 'react';
-import { ReactComponent as LeftArrow } from '../images/call-made.svg';
+import { ReactComponent as BakcArrow } from '../images/backArrow.svg';
 import CountryDetail from '../components/CountryInfo/CountryDetail';
 import { Link } from 'react-router-dom';
 import Loading from '../components/Loading';
@@ -80,10 +80,10 @@ function Country(){
 
     return(
     <>
-        <section className='max-w-7xl mx-auto mt-32 px-7 mb-20 md:px-8y lg:mb-52 2xl:px-0'>
+        <section className='max-w-7xl mx-auto mt-32 px-7 mb-20 md:px-8y lg:mb-52 2xl:px-0 dark:text-white'>
             <button>
-                <Link to={'/'} className='flex gap-2.5 content-center justify-center rounded-sm py-1 px-6 shadow-button md:shadow-none md:hover:shadow-button md:border-0'>
-                    <LeftArrow /> 
+                <Link to={'/'} className='flex gap-2.5 items-center justify-center rounded-sm py-1 px-6 shadow-button md:shadow-none md:hover:shadow-button md:border-0 dark:bg-dark-gray'>
+                    <BakcArrow className='size-4 dark:fill-white'/> 
                     <p className='text-base leading-5'>Back</p>
                 </Link>
             </button>

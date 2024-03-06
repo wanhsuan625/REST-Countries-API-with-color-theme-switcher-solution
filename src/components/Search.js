@@ -31,7 +31,7 @@ function Search ( { onSearchChange } ) {
                 type="text"
                 placeholder='Search for a country...'
                 className='w-full max-w-120 mt-6 mb-10 h-12 lightMode__shadow rounded-md pl-18.5 py-3.5
-                        md:my-12 md:w-120 md:h-14'/>
+                        md:my-12 md:w-120 md:h-14 dark:bg-dark-gray dark:shadow-none dark:text-white'/>
             
             {/* 搜尋圖片 */}
             <img src={searchImg} alt="" className='cursor-text absolute top-10 left-8 md:top-17'/>

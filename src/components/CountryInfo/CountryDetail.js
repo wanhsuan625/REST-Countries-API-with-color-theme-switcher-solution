@@ -45,7 +45,7 @@ function CountryDetail (
                 { hasBorder ?
                     borderCountries.map( ( borderCountry , index ) => (
                         <a href={`/country/${borderCountry}`} key={index}>
-                            <button className='country__detailInfo-button'>
+                            <button className='country__detailInfo-button dark:bg-dark-gray dark:shadow-none dark:border dark:border-dark-gray dark:hover:border-white'>
                                 {borderCountry}
                             </button>
                         </a>

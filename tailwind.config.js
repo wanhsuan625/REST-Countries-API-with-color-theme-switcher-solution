@@ -22,6 +22,8 @@ module.exports = {
       },
       colors: {
         'light-gray' : '#e0e0e0',
+        'dark-gray' : '#2B3844',
+        'dark-background' : '#202C36',
       },
       boxShadow: {
         'button': '0 0 3px 1px rgb(201, 201, 201)',
