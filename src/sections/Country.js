@@ -80,7 +80,7 @@ function Country(){
 
     return(
     <>
-        <section className='max-w-7xl mx-auto mt-32 px-7 mb-20 md:px-8y lg:mb-52 2xl:px-0 dark:text-white'>
+        <section className='max-w-7xl mx-auto min-h-full pb-20 pt-32 px-7 md:px-8y 2xl:px-0 dark:text-white'>
             <button>
                 <Link to={'/'} className='flex gap-2.5 items-center justify-center rounded-sm py-1 px-6 shadow-button md:shadow-none md:hover:shadow-button md:border-0 dark:bg-dark-gray'>
                     <BakcArrow className='size-4 dark:fill-white'/> 

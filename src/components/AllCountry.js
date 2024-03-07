@@ -1,6 +1,6 @@
 import React , { useState , useEffect } from 'react';
 import CountryBrief from './CountryInfo/CountryBrief';
-import Error from './Error';
+import SearchError from './SearchBox/SearchError';
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
 
@@ -87,8 +87,8 @@ function AllCountry ( { selectedRegion , searchInput } ) {
             
             // 若error為true，出現Error畫面；反之則出現搜尋所得資料
             error ?          
-                <Error/> :
-                <div className='pb-20'>
+                <SearchError/> :
+                <div className='pb-20 min-h-full'>
                     <section className='grid px-10 pb-16 gap-y-10 xs:grid-cols-2 xs:px-0 xs:gap-x-7 md:grid-cols-3 lg:gap-x-15 xl:grid-cols-4 lg:gap-y-19 2xl:gap-x-19'>
                         { countryData.slice( 0 , showCountryAmount ).map( ( country ) => (
                             <Link key={country.id} to={`/country/${country.nationName}`}>
@@ -107,7 +107,7 @@ function AllCountry ( { selectedRegion , searchInput } ) {
                     { countryData.length > showCountryAmount && (
                         <button 
                             className='block mx-auto text-base font-semibold py-2 px-6 rounded-md border-2 hover:border-slate-400 
-                                     dark:bg-dark-gray dark:border dark:border-dark-gray dark:text-white dark:hover:border-white'
+                                     dark:bg-dark-gray dark:border-dark-gray dark:text-white dark:hover:border-white'
                             onClick={loadMoreCountryHandler}
                         >
                             Load more

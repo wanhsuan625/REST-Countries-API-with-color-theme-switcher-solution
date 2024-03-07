@@ -1,7 +1,7 @@
 import React , { useState } from 'react';
 import Category from '../components/Category';
 import AllCountry from '../components/AllCountry';
-import Search from '../components/Search';
+import Search from '../components/SearchBox/Search';
 
 function HomePage () {
     const [ selectedRegion, setSelectedRegion ] = useState('All Countries');
@@ -12,7 +12,7 @@ function HomePage () {
 
     return (
     <>
-        <section className='max-w-7xl pt-24 mx-auto px-4 md:px-8 xl:px-10 2xl:px-0'>
+        <section className='max-w-7xl min-h-full pt-24 pb-20 mx-auto px-4 md:px-8 xl:px-10 2xl:px-0'>
             <div className='md:flex md:justify-between mb-8'>
                 <Search onSearchChange={handleSearchChange}/>
                 
