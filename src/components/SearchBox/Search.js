@@ -1,6 +1,6 @@
 import React , { useState , useRef } from 'react';
-import searchImg from '../images/search.svg';
-import close from '../images/close.svg';
+import searchImg from '../../images/search.svg';
+import close from '../../images/close.svg';
 import PropTypes from 'prop-types';
 
 function Search ( { onSearchChange } ) {

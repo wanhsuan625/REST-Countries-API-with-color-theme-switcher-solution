@@ -1,7 +1,7 @@
 import React from "react";
-import earthError from '../images/ecology.png';
+import earthError from '../../images/ecology.png';
 
-function Error () {
+function SearchError () {
     return(
     <>
         <section className="mb-48 md:mb-40">
@@ -14,4 +14,4 @@ function Error () {
     )
 }
 
-export default Error;
+export default SearchError;
