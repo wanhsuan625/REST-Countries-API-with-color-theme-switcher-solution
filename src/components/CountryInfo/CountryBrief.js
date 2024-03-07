@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function CountryBrief ( { flag , nationName , population , region , capital } ) {
     return(
     <>    
-        <article className='rounded-md lightMode__shadow cursor-pointer country__briefIntro--hover border-2 dark:bg-dark-gray dark:shadow-none dark:border-dark-gray'>
+        <article className='rounded-md lightMode__shadow cursor-pointer country__briefIntro--hover border-2 dark:bg-dark-gray dark:shadow-none dark:border-dark-gray dark:hover:border-white'>
             <figure className='flag shadow'>
                 <img src={flag} alt="" className='rounded-t size-full absolute top-0 left-0 object-cover'/>
             </figure>

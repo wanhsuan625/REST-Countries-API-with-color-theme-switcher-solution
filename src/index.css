@@ -10,10 +10,17 @@
 }
 html , body{
     font-family: 'Nunito Sans',  sans-serif;
+    height: 100%;
 }
-
+#root{
+    height: 100%;
+}
 input:focus {
     outline: none;
+}
+
+.dark{
+    background-color: #202C36;
 }
 .lightMode__shadow{
     box-shadow: 0 0 6px -1px #C4C4C4;
@@ -107,10 +114,4 @@ input:checked + .toggle::after{
     70% { content: 'Loading.'}
     80% { content: 'Loading..'}
     90% , 100% { content: 'Loading...'}
-}
-
-@media (prefers-color-scheme: dark) {
-    body{
-        background-color: #202C36;
-    }
 }

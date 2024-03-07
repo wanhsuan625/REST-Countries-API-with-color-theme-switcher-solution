@@ -3,17 +3,13 @@ import moon from '../images/moon.png';
 import sun from '../images/sun.png';
 
 function Header () {
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const [ isDarkMode , setIsDarkMode ] = useState(prefersDark);
+    const [ isDarkMode , setIsDarkMode ] = useState(false);
 
     const changeColorModeHandle = () => {
+        if(isDarkMode) document.documentElement.classList.remove('dark');
+        else document.documentElement.classList.add('dark');
+        
         setIsDarkMode(!isDarkMode);
-        updateWindowColorScheme(!isDarkMode);
-    };
-
-    const updateWindowColorScheme = (isDarkMode) => {
-        const newColorScheme = isDarkMode ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-color-scheme', newColorScheme);
     };
     
     return (
@@ -26,7 +22,7 @@ function Header () {
             </a>
             
             {/* dark-light mode switch button */}
-            <input type='checkbox' id='modeSwitch' className='h-0 w-0 invisible' checked={ isDarkMode ? true : false } onChange={changeColorModeHandle}/>
+            <input type='checkbox' id='modeSwitch' className='h-0 w-0 invisible' checked={isDarkMode} onClick={changeColorModeHandle}/>
             <label htmlFor="modeSwitch" className='toggle'>
                 <img src={moon} alt="" className='w-4 absolute top-1 left-1.5'/>
                 <img src={sun} alt="" className='w-4.5 absolute top-1 right-1.5'/>

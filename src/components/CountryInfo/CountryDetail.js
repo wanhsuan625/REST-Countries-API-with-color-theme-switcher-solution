@@ -39,7 +39,7 @@ function CountryDetail (
             </div>
         </section>
     
-        <section className='flex mb-4 mt-8 items-center gap-4 flex-wrap'>
+        <section className='flex mb-16 mt-8 items-center gap-4 flex-wrap lg:mb-0'>
             <p className='text-base font-semibold leading-8'>Border Coutries:</p>
             <div className='flex flex-wrap gap-x-4 gap-y-3'>
                 { hasBorder ?
