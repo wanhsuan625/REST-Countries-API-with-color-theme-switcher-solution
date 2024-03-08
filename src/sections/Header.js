@@ -1,16 +1,20 @@
-import React , { useState } from 'react';
+import React , { useState , useEffect } from 'react';
 import moon from '../images/moon.png';
 import sun from '../images/sun.png';
 
 function Header () {
-    const [ isDarkMode , setIsDarkMode ] = useState(false);
+    const preferColor = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;    //  判斷使用者的亮暗模式
+    const [ isDarkMode , setIsDarkMode ] = useState(preferColor);
 
     const changeColorModeHandle = () => {
-        if(isDarkMode) document.documentElement.classList.remove('dark');
-        else document.documentElement.classList.add('dark');
+        if(isDarkMode) document.documentElement.classList.add('dark');
+        else document.documentElement.classList.remove('dark');
         
         setIsDarkMode(!isDarkMode);
     };
+
+    // 先根據使用者電腦的亮暗模式設定執行
+    useEffect( () => {changeColorModeHandle();} , []);
     
     return (
     <>
@@ -22,7 +26,7 @@ function Header () {
             </a>
             
             {/* dark-light mode switch button */}
-            <input type='checkbox' id='modeSwitch' className='h-0 w-0 invisible' checked={isDarkMode} onClick={changeColorModeHandle}/>
+            <input type='checkbox' id='modeSwitch' className='h-0 w-0 invisible' checked={!isDarkMode} onClick={changeColorModeHandle}/>
             <label htmlFor="modeSwitch" className='toggle'>
                 <img src={moon} alt="" className='w-4 absolute top-1 left-1.5'/>
                 <img src={sun} alt="" className='w-4.5 absolute top-1 right-1.5'/>
