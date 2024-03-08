@@ -49,7 +49,7 @@ Users should be able to:
 
 ### What I learned
 
-- 1. 
+- TailwindCSS dark mode setting  
 In this project I try to use TailwindCSS to implement light/dark mode:
 First, configure the darkMode parameter in the tailwind.config.js file. Then, I use the dark: prefix in any element which I want to apply specific styles for dark mode.
 
@@ -60,8 +60,7 @@ First, configure the darkMode parameter in the tailwind.config.js file. Then, I 
     }
 ```
 
-- 2. 
-<React Route>
+- React Route  
 Using the ":countryName" parameter to link to different routes.
 
 ### Continued development
